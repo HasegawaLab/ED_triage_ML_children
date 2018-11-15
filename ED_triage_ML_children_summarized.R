@@ -118,7 +118,6 @@ hist(pred_lasso_prob)
 (roc_lasso <- roc(response  = y_test, 
                   predictor = pred_lasso_prob) )
 plot(roc_lasso) 
-reportROC(df_test$outcome, pred_lasso_prob)
 
 # Confusion matrix
 prevalence <- mean(as.numeric(df_test$outcome)-1) 
@@ -372,11 +371,6 @@ caret::confusionMatrix(data      = pred_ANN_all_class_topleft,
                        reference = y_test_factor ,
                        mode      = "sens_spec",
                        positive  = "Yes")
-
-reportROC(df_test$outcome, yhat_keras_prob_vec, important = "se")
-ci(roc_ANN_all, of = c("auc"))
-roc.test(roc_ANN_all, roc_logistic_triage, method="delong", alternative="two.sided")
-
 
 # Decision curve analysis
 # DCA analysis
